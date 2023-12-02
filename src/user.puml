@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class User {
+    # username, password : String
+    + User()
+    + User(username : String, password : String)
+    + getUsername() : String
+    + getPassword() : String
+    + login() : boolean
+}
+class Teller {
+    - nasabah : Nasabah[]
+    - jumlahNasabah : int
+    + Teller(username : String, password : String)
+    + Teller() {}
+    + getUsername() : String
+    + getPassword() : String
+    + login() : boolean
+    + tambahNasabah(username : String, password : String, String namalengkap) : void
+    + getNasabah() : Nasabah[]
+    + getJumlahNasabah() : int
+    + getNasabah(indeks : int) : Nasabah
+}
+class Nasabah {
+    - tabungan : Tabungan
+    - namalengkap : String
+    + Nasabah(username : String, password : String)
+    + Nasabah(username : String, password : String, namalengkap : String)
+    + getUsername() : String
+    + getPassword() : String
+    + getNamaLengkap() : String
+    + login() : boolean
+    + getTabungan() : Tabungan
+    + setTabungan(tabungan : Tabungan) : void
+}
+
+User --> Teller : extends
+User --> Nasabah : extends
+
+@enduml

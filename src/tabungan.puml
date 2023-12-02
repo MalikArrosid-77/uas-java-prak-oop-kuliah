@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Tabungan {
+    # saldo : int
+    + Tabungan(saldo : int)
+}
+
+class TambahUang {
+    - tingkatBunga : double
+    + TambahUang(saldo : int, tingkatBunga : double)
+    + cekUang() : double
+}
+
+class AmbilUang {
+    - proteksi : int
+    + AmbilUang(saldo : int)
+    + AmbilUang(saldo : int, proteksi : int)
+    + ambilUang(jumlahUang : int) : boolean
+    + getSaldo() : int
+}
+
+class TopUpDompetDigital {
+    # namaDompetDigital : String
+    # saldoDompetDigital : int
+    # namaTransaksi : String
+    + TopUpDompetDigital(saldo : int, namaDompetDigital : String)
+    + ambilUangTabungan(jumlahUang : int) : void
+    + TopUp(jumlahUang : int) : void
+    + GunakanSaldoDompet(jumlahUang : int, namaTransaksi : String) : boolean
+    + getSaldo() : int
+    + getSaldoDompetDigital() : int
+    + getNamaDompetDigital() : String
+    + getNamaTransaksi() : String
+}
+
+class Tagihan {
+    # namaTagihan : String
+    + Tagihan(saldo : int)
+    + getSaldo() : int
+    + getNamaTagihan() : String
+    + bayarTagihan(jumlahTagihan : int, namaTagihan : String) : boolean
+}
+
+Tabungan --> TambahUang : extends
+Tabungan --> AmbilUang : extends
+Tabungan --> TopUpDompetDigital : extends
+Tabungan --> Tagihan : extends
+
+class MultiTabungan {
+    - saldoIDR : int
+    + MultiTabungan(initsaldoIDR : int)
+    + getSaldoIDR() : int
+    + simpanUang(jumlahUang : int, mataUang : String) : void
+    + ambilUang(jumlahUang : int, mataUang : String) : boolean
+}
+
+@enduml
